@@ -1,6 +1,10 @@
 var gulp = require('gulp');
 var gulpLoadPlugins = require('gulp-load-plugins');
 var $ = gulpLoadPlugins();
+var eslint   = require('gulp-eslint');
+var reporter = require('eslint-html-reporter');
+var path     = require('path');
+var fs       = require('fs');
 
 var REPORT_DIR = 'reports/';
 var ESLINT_FILE_NAME = 'eslint-checkstyle.xml';
@@ -16,7 +20,9 @@ gulp.task('build', () =>
 gulp.task('eslint', () =>
   gulp.src(GLOB_SRC_FILES)
     .pipe($.eslint({useEslintrc: true}))
-    .pipe($.eslint.format())
+    .pipe($.eslint.format(reporter, function(results) {
+      fs.writeFileSync(path.join(REPORT_DIR, 'report-results.html'), results);
+    }))
     .pipe($.eslint.failAfterError())
 )
 
