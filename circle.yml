@@ -11,5 +11,5 @@ dependencies:
     - npm install -g gulp
 test:
   override:
-    - ./node_modules/eslint/bin/eslint.js --quiet --format=junit -o $CIRCLE_TEST_REPORTS/eslint/eslint.xml app
+    - node_modules/eslint/bin/eslint.js --quiet --format=junit -o $CIRCLE_TEST_REPORTS/eslint/eslint.xml app
     - mkdir -p $CIRCLE_TEST_REPORTS/eslint
