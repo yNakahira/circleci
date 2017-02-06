@@ -1,5 +1,4 @@
 general:
-  build_dir: app
   artifacts:
     - reports/report.html
 machine:
@@ -8,7 +7,7 @@ machine:
     version: 6.9.4
 dependencies:
   post:
-    - npm install eslint
+    - npm install -g gulp
 test:
   override:
     - node_modules/eslint/bin/eslint.js --quiet --format=junit -o $CIRCLE_TEST_REPORTS/eslint/eslint.xml app
