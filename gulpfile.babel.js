@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var gulpLoadPlugins = require('gulp-load-plugins');
 var $ = gulpLoadPlugins();
-var eslint   = require('gulp-eslint');
 var reporter = require('eslint-html-reporter');
 var path     = require('path');
 var fs       = require('fs');
@@ -17,7 +16,7 @@ gulp.task('build', () =>
     .pipe(gulp.dest('build/scripts'))
 )
 
-gulp.task('eslint', () =>
+gulp.task('lint', () =>
   gulp.src(GLOB_SRC_FILES)
     .pipe($.eslint({useEslintrc: true}))
     .pipe($.eslint.format(reporter, function(results) {
@@ -25,9 +24,3 @@ gulp.task('eslint', () =>
     }))
     .pipe($.eslint.failAfterError())
 )
-
-gulp.task('lint', ['eslint'], function () {
-  gulp.src(REPORT_DIR + '*.xml')
-    .pipe($.prettyData({ type: 'prettify' }))
-    .pipe(gulp.dest(REPORT_DIR));
-});
