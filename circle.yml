@@ -8,9 +8,8 @@ machine:
     version: 6.9.4
 dependencies:
   post:
-    - npm install
     - npm install -g gulp
 test:
   override:
-    - mkdir -p $CIRCLE_TEST_REPORTS/eslint
     - ./node_modules/eslint/bin/eslint.js --quiet --format=junit -o $CIRCLE_TEST_REPORTS/eslint/eslint.xml app
+    - mkdir -p $CIRCLE_TEST_REPORTS/eslint
