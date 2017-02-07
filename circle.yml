@@ -1,6 +1,6 @@
 general:
   artifacts:
-    - $CIRCLE_ARTIFACTS/eslint/report.html
+    - reports/report-results.html
 machine:
   timezone: Asia/Tokyo
   node:
@@ -10,6 +10,6 @@ dependencies:
     - npm install -g gulp
 test:
   override:
-    - mkdir -p $CIRCLE_ARTIFACTS/eslint
+    - mkdir -p reports
 #    - node_modules/eslint/bin/eslint.js --quiet --format=junit -o $CIRCLE_TEST_REPORTS/eslint/eslint.xml app
-    - node_modules/eslint/bin/eslint.js -- -f node_modules/eslint-html-reporter/reporter.js -o $CIRCLE_ARTIFACTS/eslint/report.html
+    - gulp lint --quiet -f node_modules/eslint-html-reporter/reporter.js -o reports/report-results.html $CIRCLE_ARTIFACTS
