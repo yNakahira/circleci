@@ -1,6 +1,6 @@
 general:
   artifacts:
-    - tmp/report.html
+    - $CIRCLE_TEST_REPORTS/eslint/report.html
 machine:
   timezone: Asia/Tokyo
   node:
@@ -11,5 +11,5 @@ dependencies:
 test:
   override:
     - mkdir -p $CIRCLE_TEST_REPORTS/eslint
-    - node_modules/eslint/bin/eslint.js --quiet --format=junit -o $CIRCLE_TEST_REPORTS/eslint/eslint.xml app
-    - node_modules/eslint/bin/eslint.js -- -f node_modules/eslint-html-reporter/reporter.js -o tmp/report.html
+#    - node_modules/eslint/bin/eslint.js --quiet --format=junit -o $CIRCLE_TEST_REPORTS/eslint/eslint.xml app
+    - node_modules/eslint/bin/eslint.js -- -f node_modules/eslint-html-reporter/reporter.js -o $CIRCLE_TEST_REPORTS/eslint/report.html
