@@ -12,4 +12,6 @@ test:
   override:
     - mkdir -p reports
 #    - node_modules/eslint/bin/eslint.js --quiet --format=junit -o $CIRCLE_TEST_REPORTS/eslint/eslint.xml app
-    - gulp lint --quiet -f node_modules/eslint-html-reporter/reporter.js -o reports/report-results.html $CIRCLE_ARTIFACTS
+    - gulp lint --quiet
+  post:
+    - mv reports $CIRCLE_ARTIFACTS
