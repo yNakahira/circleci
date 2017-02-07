@@ -1,6 +1,3 @@
-general:
-  artifacts:
-    - reports/report-results.html
 machine:
   timezone: Asia/Tokyo
   node:
@@ -12,5 +9,5 @@ test:
   override:
     - mkdir -p reports
     - gulp lint --quiet
-#  post:
-#    - mv reports $CIRCLE_ARTIFACTS
+  post:
+    - mv reports $CIRCLE_ARTIFACTS
