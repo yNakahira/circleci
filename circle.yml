@@ -7,9 +7,9 @@ dependencies:
     - npm install -g gulp
 test:
   override:
-#    - mkdir -p reports
-#    - gulp lint --quiet
+    - mkdir -p reports
+    - gulp lint --quiet
     - chmod a+x run-eslint.sh
     - ./run-eslint.sh
-#  post:
-#    - mv reports $CIRCLE_ARTIFACTS
+  post:
+   - mv reports $CIRCLE_ARTIFACTS
