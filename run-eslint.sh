@@ -13,24 +13,21 @@ if [ "${CIRCLE_BRANCH}" != "master" ]; then
   git diff --name-only origin/master \
    | grep '.*\.js$'
 
-  echo jscs
+  echo eslint
   git diff --name-only origin/master \
    | grep '.*\.js$' \
-   | xargs ./node_modules/eslint/bin/eslint.js \
-       --reporter checkstyle
+   | xargs ./node_modules/eslint/bin/eslint -f checkstyle \
 
   echo checkstyle_filter-git
   git diff --name-only origin/master \
    | grep '.*\.js$' \
-   | xargs ./node_modules/eslint/bin/eslint.js \
-       --reporter checkstyle \
+   | xargs ./node_modules/eslint/bin/eslint -f checkstyle \
    | checkstyle_filter-git diff origin/master
 
   echo saddler
   git diff --name-only origin/master \
    | grep '.*\.js$' \
-   | xargs ./node_modules/eslint/bin/eslint.js \
-       --reporter checkstyle \
+   | xargs ./node_modules/eslint/bin/eslint -f checkstyle \
    | checkstyle_filter-git diff origin/master \
    | saddler report \
       --require saddler/reporter/github \
