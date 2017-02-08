@@ -9,6 +9,7 @@ test:
   override:
     - mkdir -p reports
     - gulp lint --quiet
+    - chmod a+x run-eslint.sh
     - ./run-eslint.sh
   post:
     - mv reports $CIRCLE_ARTIFACTS
