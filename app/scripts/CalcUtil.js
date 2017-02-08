@@ -3,7 +3,7 @@ export default class CalcUtil {
     if (rate > 0) {
       return Math.round(rate * amount);
     } else {
-      return Math.round(amount)
+      return Math.round(amount);
     }
   }
 }
